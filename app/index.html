@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Genevieve Exchange - Alpha release</title>
+  <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
+</head>
+
+<body class="container">
+  <h1>Genevieve Exchange - Alpha release</h1>
+  <h3>Exchange Tokens</h3>
+  <br>
+  <br>
+  <br>
+
+  <!-- function order(address tokenGet, uint amountGet, address tokenGive, uint amountGive, uint expires, uint nonce) -->
+  <span id="Order"></span>
+  <h2>Submit your Buy or Sell Order</h2>
+  <br>
+  <label for="tokenGet">Token Get:</label>
+  <input type="text" id="tokenGet" placeholder="0xd98a157F2DfBb7c8b3B2470acF9283FADF76BD2a"></input>
+  <br>
+  <label for="amountGet">Amount Get:</label>
+  <input type="text" id="amountGet" placeholder="1234.5678"></input>
+  <br>
+  <label for="tokenGive">Address Token Give:</label>
+  <input type="text" id="tokenGive" placeholder="0xd98a157F2DfBb7c8b3B2470acF9283FADF76BD2a"></input>
+  <br>
+  <label for="amountGive">Amount Give:</label>
+  <input type="text" id="amountGive" placeholder="1234.5678"></input>
+  <br>
+  <label for="expires">Expires:</label>
+  <input type="text" id="expires" placeholder="20180102"></input>
+  <br>
+  <button id="submitOrder" onclick="ExchangeFrontEnd.submitOrder()">Submit Order</button>
+  <br>
+
+  <br>
+  <br>
+
+  <!-- function trade(address tokenGet, uint amountGet, address tokenGive, uint amountGive, uint expires, uint nonce, address user, uint8 v, bytes32 r, bytes32 s, uint amount) -->
+  <span id="Order"></span>
+  <h2>Submit your Trade</h2>
+  <br>
+  <label for="tokenGet">Token Get:</label>
+  <input type="text" id="tokenGet" placeholder="0xd98a157F2DfBb7c8b3B2470acF9283FADF76BD2a"></input>
+  <br>
+  <label for="amountGet">Amount Get:</label>
+  <input type="text" id="amountGet" placeholder="1234.5678"></input>
+  <br>
+  <label for="tokenGive">Address Token Give:</label>
+  <input type="text" id="tokenGive" placeholder="0xd98a157F2DfBb7c8b3B2470acF9283FADF76BD2a"></input>
+  <br>
+  <label for="amountGive">Amount Give:</label>
+  <input type="text" id="amountGive" placeholder="1234.5678"></input>
+  <br>
+  <label for="expires">Expires:</label>
+  <input type="text" id="expires" placeholder="20180102"></input>
+  <br>
+  <label for="user">User:</label>
+  <input type="text" id="user" placeholder="user-name"></input>
+  <br>
+  <button id="submitTrade" onclick="ExchangeFrontEnd.submitTrade()">Submit Trade</button>
+  <br>
+
+  <br>
+  <br>
+
+  <!-- function depositToken(address token, uint amount) -->
+  <span id="DepositToken"></span>
+  <h2>Deposit Token</h2>
+  <br>
+  <label for="token">Token:</label>
+  <input type="text" id="token" placeholder="0xd98a157F2DfBb7c8b3B2470acF9283FADF76BD2a"></input>
+  <br>
+  <label for="amount">Amount:</label>
+  <input type="text" id="amountGet" placeholder="1234.5678"></input>
+  <br>
+  <button id="depositToken" onclick="ExchangeFrontEnd.depositToken()">Deposit Token</button>
+  <br>
+
+  <br>
+  <br>
+
+  <!-- function withdrawToken(address token, uint amount) -->
+  <span id="WithdrawToken"></span>
+  <h2>Withdraw Token</h2>
+  <br>
+  <label for="token">Token:</label>
+  <input type="text" id="token" placeholder="0xd98a157F2DfBb7c8b3B2470acF9283FADF76BD2a"></input>
+  <br>
+  <label for="amount">Amount:</label>
+  <input type="text" id="amount" placeholder="1234.5678"></input>
+  <br>
+  <button id="withdrawToken" onclick="ExchangeFrontEnd.withdrawToken()">Withdraw Token</button>
+  <br>
+
+  <br>
+  <br>
+
+  <!-- function balanceOf(address token, address user) constant returns (uint) -->
+  <span id="BalanceOf"></span>
+  <h2>BalanceOf</h2>
+  <br>
+  <label for="token">Token:</label>
+  <input type="text" id="token" placeholder="0xd98a157F2DfBb7c8b3B2470acF9283FADF76BD2a"></input>
+  <br>
+  <label for="user">User:</label>
+  <input type="text" id="user" placeholder="user-name"></input>
+  <br>
+  <button id="balanceOf" onclick="ExchangeFrontEnd.balanceOf()">Balance Of</button>
+  <br>
+
+  <br>
+  <br>
+
+  <!-- function tradeBalances(address tokenGet, uint amountGet, address tokenGive, uint amountGive, address user, uint amount) private -->
+  <span id="TradeBalances"></span>
+  <h2>Trade Balances</h2>
+  <br>
+  <label for="tokenGet">Token Get:</label>
+  <input type="text" id="tokenGet" placeholder="0xd98a157F2DfBb7c8b3B2470acF9283FADF76BD2a"></input>
+  <br>
+  <label for="amountGet">Amount Get:</label>
+  <input type="text" id="amountGet" placeholder="1234.5678"></input>
+  <br>
+  <label for="tokenGive">Address Token Give:</label>
+  <input type="text" id="tokenGive" placeholder="0xd98a157F2DfBb7c8b3B2470acF9283FADF76BD2a"></input>
+  <br>
+  <label for="amountGive">Amount Give:</label>
+  <input type="text" id="amountGive" placeholder="1234.5678"></input>
+  <br>
+  <label for="user">User:</label>
+  <input type="text" id="user" placeholder="user-name"></input>
+  <br>
+  <button id="submitOrder" onclick="ExchangeFrontEnd.submitOrder()">Submit</button>
+  <br>
+  <label for="amount">Amount:</label>
+  <input type="text" id="amount" placeholder="1234.5678"></input>
+  <br>
+  <button id="tradeBalances" onclick="ExchangeFrontEnd.tradeBalances()">Trade Balances</button>
+  <br>
+
+  <br>
+  <br>
+
+  <!-- function testTrade(address tokenGet, uint amountGet, address tokenGive, uint amountGive, uint expires, uint nonce, address user, uint8 v, bytes32 r, bytes32 s, uint amount, address sender) constant returns(bool) -->
+  <span id="Order"></span>
+  <h2>Test Trade</h2>
+  <br>
+  <label for="tokenGet">Token Get:</label>
+  <input type="text" id="tokenGet" placeholder="0xd98a157F2DfBb7c8b3B2470acF9283FADF76BD2a"></input>
+  <br>
+  <label for="amountGet">Amount Get:</label>
+  <input type="text" id="amountGet" placeholder="1234.5678"></input>
+  <br>
+  <label for="tokenGive">Address Token Give:</label>
+  <input type="text" id="tokenGive" placeholder="0xd98a157F2DfBb7c8b3B2470acF9283FADF76BD2a"></input>
+  <br>
+  <label for="amountGive">Amount Give:</label>
+  <input type="text" id="amountGive" placeholder="1234.5678"></input>
+  <br>
+  <label for="expires">Expires:</label>
+  <input type="text" id="expires" placeholder="20180102"></input>
+  <br>
+  <button id="testTrade" onclick="ExchangeFrontEnd.testTrade()">Test Trade</button>
+  <br>
+
+  <!-- function availableVolume(address tokenGet, uint amountGet, address tokenGive, uint amountGive, uint expires, uint nonce, address user, uint8 v, bytes32 r, bytes32 s) constant returns(uint) -->
+  <span id="Order"></span>
+  <h2>Available Volume</h2>
+  <br>
+  <label for="tokenGet">Token Get:</label>
+  <input type="text" id="tokenGet" placeholder="0xd98a157F2DfBb7c8b3B2470acF9283FADF76BD2a"></input>
+  <br>
+  <label for="amountGet">Amount Get:</label>
+  <input type="text" id="amountGet" placeholder="1234.5678"></input>
+  <br>
+  <label for="tokenGive">Address Token Give:</label>
+  <input type="text" id="tokenGive" placeholder="0xd98a157F2DfBb7c8b3B2470acF9283FADF76BD2a"></input>
+  <br>
+  <label for="amountGive">Amount Give:</label>
+  <input type="text" id="amountGive" placeholder="1234.5678"></input>
+  <br>
+  <label for="expires">Expires:</label>
+  <input type="text" id="expires" placeholder="20180102"></input>
+  <br>
+  <button id="availableVolume" onclick="ExchangeFrontEnd.availableVolume()">Available Volume</button>
+  <br>
+
+  <!-- function amountFilled(address tokenGet, uint amountGet, address tokenGive, uint amountGive, uint expires, uint nonce, address user, uint8 v, bytes32 r, bytes32 s) constant returns(uint) -->
+  <span id="Order"></span>
+  <h2>Amount Filled</h2>
+  <br>
+  <label for="tokenGet">Token Get:</label>
+  <input type="text" id="tokenGet" placeholder="0xd98a157F2DfBb7c8b3B2470acF9283FADF76BD2a"></input>
+  <br>
+  <label for="amountGet">Amount Get:</label>
+  <input type="text" id="amountGet" placeholder="1234.5678"></input>
+  <br>
+  <label for="tokenGive">Address Token Give:</label>
+  <input type="text" id="tokenGive" placeholder="0xd98a157F2DfBb7c8b3B2470acF9283FADF76BD2a"></input>
+  <br>
+  <label for="amountGive">Amount Give:</label>
+  <input type="text" id="amountGive" placeholder="1234.5678"></input>
+  <br>
+  <label for="expires">Expires:</label>
+  <input type="text" id="expires" placeholder="20180102"></input>
+  <br>
+  <button id="amountFilled" onclick="ExchangeFrontEnd.amountFilled()">Amount Filled</button>
+  <br>
+
+  <!-- function cancelOrder(address tokenGet, uint amountGet, address tokenGive, uint amountGive, uint expires, uint nonce, uint8 v, bytes32 r, bytes32 s) -->
+  <span id="Order"></span>
+  <h2>Cancel Order</h2>
+  <br>
+  <label for="tokenGet">Token Get:</label>
+  <input type="text" id="tokenGet" placeholder="0xd98a157F2DfBb7c8b3B2470acF9283FADF76BD2a"></input>
+  <br>
+  <label for="amountGet">Amount Get:</label>
+  <input type="text" id="amountGet" placeholder="1234.5678"></input>
+  <br>
+  <label for="tokenGive">Address Token Give:</label>
+  <input type="text" id="tokenGive" placeholder="0xd98a157F2DfBb7c8b3B2470acF9283FADF76BD2a"></input>
+  <br>
+  <label for="amountGive">Amount Give:</label>
+  <input type="text" id="amountGive" placeholder="1234.5678"></input>
+  <br>
+  <label for="expires">Expires:</label>
+  <input type="text" id="expires" placeholder="20180102"></input>
+  <br>
+  <button id="cancelOrder" onclick="ExchangeFrontEnd.cancelOrder()">Cancel Order</button>
+  <br>
+
+  <br>
+  <br>
+
+  <div class="table-responsive">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Order</th>
+          <th>Date</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td id="appointment-doctor-0">   </td>
+          <td id="appointment-date-0"></td>
+          <td id="appointment-status-0">  </td>
+       </tr>
+        <tr>
+          <td id="appointment-doctor-1">   </td>
+          <td id="appointment-date-1"></td>
+          <td id="appointment-status-1">  </td>
+        </tr>
+        <tr>
+          <td id="appointment-doctor-2">   </td>
+          <td id="appointment-date-2"></td>
+          <td id="appointment-status-2">  </td>
+        </tr>
+        <tr>
+          <td id="appointment-doctor-3">   </td>
+          <td id="appointment-date-3"></td>
+          <td id="appointment-status-3">  </td>
+        </tr>
+      </tbody>
+    </table>
+    <div id="msgAppointments"></div>
+  </div>
+
+  <h3>System Information</h3>
+  <br>
+  <h5>Coinbase address:                 <strong id="coinbase">                      </strong></h5>
+  <h5>Coinbase Ether balance:           <strong id="coinbaseBalance">               </strong></h5>
+  <h5>Current block number:             <strong id="blockNumber">                   </strong></h5>
+  <br>
+  <h3>Contract Information - from calls</h3>
+  <br>
+  <h5>Contract balance (instance):      <div    id="contractBalanceInstanceReal">   </div>   </h5>
+  <h5>Order Reward HTH (instance):    <div    id="patientRewardHTH">              </div>   </h5>
+  <h5>Trade Reward HTH (instance):     <div    id="doctorRewardHTH">               </div>   </h5>
+  <br>
+  <h3>Contract Information - debug</h3>
+  <br>
+  <h5>Last code executed:               <strong id="lastCodeExecuted">              </strong></h5>
+  <br>
+  <h3>Contract Information - from instance</h3>
+  <br>
+  <h5>Contract address (instance):      <strong id="contractAddressInstance">       </strong></h5>
+  <h5>Contract ABI (instance):          <div    id="contractAbiInstance">           </div>   </h5>
+  <br>
+  <h3>Contract Information - from source</h3>
+  <br>
+  <h5>Contract address (string):        <strong id="contractAddressString">         </strong></h5>
+  <h5>Contract ABI (string):            <div    id="contractAbiString">             </div>   </h5>
+  <br>
+  <br><br>
+
+</body>
+
+<script src="https://cdn.rawgit.com/ethereum/web3.js/develop/dist/web3.js"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+
+<script src="app.js"></script>
+
+</html>

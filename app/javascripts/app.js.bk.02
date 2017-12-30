@@ -1,0 +1,298 @@
+/*********************************************************************************
+ *********************************************************************************
+ *
+ * Healthereum - Miduso Alpha release
+ * Javascript Front-End
+ *
+ *********************************************************************************
+ ********************************************************************************/
+
+// Enforce JavaScript 1.8.5 (ECMAScript version 5
+'use strict';
+
+
+/*********************************************************************************
+ *
+ * Data - Constants
+ *
+ *********************************************************************************/
+
+var _weiToEther = 1000000000000000000;
+
+
+/*********************************************************************************
+ *
+ * Data - Functions
+ *
+ *********************************************************************************/
+
+function hex2a(hex) {
+  var str = '';
+  for (var i = 0; i < hex.length; i += 2) {
+    var v = parseInt(hex.substr(i, 2), 16);
+    if (v) str += String.fromCharCode(v);
+  }
+  return str;
+}
+
+/*********************************************************************************
+ *
+ * Libraries
+ *
+ *********************************************************************************/
+
+var _web = require('web3');
+var _web2 = _interopRequireDefault(_web);
+
+var _truffleContract = require('truffle-contract');
+var _truffleContract2 = _interopRequireDefault(_truffleContract);
+
+
+/*********************************************************************************
+ *
+ * Prepare contract
+ *
+ *********************************************************************************/
+
+var _Miduso = require('../../build/contracts/Miduso.json');
+var _Miduso2 = _interopRequireDefault(_Miduso);
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var Miduso = (0, _truffleContract2.default)(_Miduso2.default);
+
+
+/*********************************************************************************
+ *
+ * Contract Interaction - Transactions
+ *
+ *********************************************************************************/
+
+window.MidusoFrontEnd = {
+
+  scheduleAppointment: function() {
+    var self = this;
+
+    var patientAddress      = parseInt(document.getElementById("patientAddress").value);
+    var doctorAddress       = parseInt(document.getElementById("doctorAddress").value);
+    var appointmentDateTime = parseInt(document.getElementById("appointmentDateTime").value);
+    //var patientAddress      = $("#patientAddress").val();
+    //var doctorAddress       = $("#doctorAddress").val();
+    //var appointmentDateTime = $("#appointmentDateTime").val();
+      
+    this.setStatus("Initiating appointment transaction... (please wait)");
+
+    var miduso;
+    Miduso.deployed().then(function(instance) {
+      miduso = instance;
+      return miduso.scheduleAppointment(patientAddress, doctorAddress, appointmentDateTime);
+    }).then(function() {
+      self.setStatus("Patient appointment has been recorded");
+      // TO DO refresh list of appointment
+      //self.refreshAppointments();
+    }).catch(function(e) {
+      console.log(e);
+      self.setStatus("Error recording appointment; see log.");
+    });
+  },
+
+  setStatus: function(message) {
+    var status = document.getElementById("status");
+    status.innerHTML = message;
+  }
+  
+}
+  
+window.scheduleAppointment = function(patientAddress, doctorAddress, appointmentDateTime) {
+  var patientAddress      = $("#patientAddress").val();
+  var doctorAddress       = $("#doctorAddress").val();
+  var appointmentDateTime = $("#appointmentDateTime").val();
+  try {
+    $("#msgCandidates").html("Appointment has been scheduled. It will appear on the list of appointments as soon as it is recorded on the blockchain. Kindly wait.");
+    $("#patientAddress").val("");
+    $("#doctorAddress").val("");
+    $("#appointmentDateTime").val("");
+
+    Miduso.deployed().then(function(contractInstance) {
+      window.scheduleAppointment = function(patientAddress, doctorAddress, appointmentDateTime) {
+        contractInstance.scheduleAppointment(patientAddress, doctorAddress, {gas:140000,from:web3.eth.accounts[0]});
+      }
+    });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+window.confirmAppointment = function(patientAddress, doctorAddress, appointmentDateTime) {
+  var patientAddress      = $("#patientAddress").val();
+  var doctorAddress       = $("#doctorAddress").val();
+  var appointmentDateTime = $("#appointmentDateTime").val();
+  try {
+    $("#msgCandidates").html("Appointment has been confirmed. It will appear on the list of appointments as soon as it is recorded on the blockchain. Kindly wait.");
+    $("#patientAddress").val("");
+    $("#doctorAddress").val("");
+    $("#appointmentDateTime").val("");
+
+    Miduso.deployed().then(function(contractInstance) {
+    window.confirmAppointment = function(patientAddress, doctorAddress, appointmentDateTime) {
+      contractInstance.confirmAppointment(patientAddress, doctorAddress, {gas:140000,from:web3.eth.accounts[0]});
+    }
+    });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+window.cancelAppointment = function(patientAddress, doctorAddress, appointmentDateTime) {
+  var patientAddress      = $("#patientAddress").val();
+  var doctorAddress       = $("#doctorAddress").val();
+  var appointmentDateTime = $("#appointmentDateTime").val();
+  try {
+    $("#msgCandidates").html("Appointment has been canceled. It will appear as so on the list of appointments as soon as it is recorded on the blockchain. Kindly wait.");
+    $("#patientAddress").val("");
+    $("#doctorAddress").val("");
+    $("#appointmentDateTime").val("");
+
+    Miduso.deployed().then(function(contractInstance) {
+    window.cancelAppointment = function(patientAddress, doctorAddress, appointmentDateTime) {
+      contractInstance.cancelAppointment(patientAddress, doctorAddress, {gas:140000,from:web3.eth.accounts[0]});
+    }
+    });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+window.rescheduleAppointment = function(patientAddress, doctorAddress, appointmentDateTime) {
+  var patientAddress      = $("#patientAddress").val();
+  var doctorAddress       = $("#doctorAddress").val();
+  var appointmentDateTime = $("#appointmentDateTime").val();
+  try {
+    $("#msgCandidates").html("Appointment has been rescheduled. It will appear on the list of appointments as soon as it is recorded on the blockchain. Kindly wait.");
+    $("#patientAddress").val("");
+    $("#doctorAddress").val("");
+    $("#appointmentDateTime").val("");
+
+    Miduso.deployed().then(function(contractInstance) {
+    window.rescheduleAppointment = function(patientAddress, doctorAddress, appointmentDateTime) {
+      contractInstance.rescheduleAppointment(patientAddress, doctorAddress, {gas:140000,from:web3.eth.accounts[0]});
+    }
+    });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+window.noShow = function(patientAddress, doctorAddress, appointmentDateTime) {
+  var patientAddress      = $("#patientAddress").val();
+  var doctorAddress       = $("#doctorAddress").val();
+  var appointmentDateTime = $("#appointmentDateTime").val();
+  try {
+    $("#msgCandidates").html("Appointment has been a no-sho.w It will appear as so on the list of appointments as soon as it is recorded on the blockchain. Kindly wait.");
+    $("#patientAddress").val("");
+    $("#doctorAddress").val("");
+    $("#appointmentDateTime").val("");
+
+    Miduso.deployed().then(function(contractInstance) {
+    window.noShow = function(patientAddress, doctorAddress, appointmentDateTime) {
+      contractInstance.noShow(patientAddress, doctorAddress, {gas:140000,from:web3.eth.accounts[0]});
+    }
+    });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+
+/*********************************************************************************
+ *
+ * Contract Interaction - Calls
+ *
+ *********************************************************************************/
+
+Miduso.deployed().then(function (contractInstance) {
+  contractInstance.getPatientAppointmentsTest.call(name).then(function (v) {
+  document.getElementById('candidate-name-0').innerText    = hex2a(v[0]);
+  document.getElementById('candidate-address-0').innerText = v[1];
+  document.getElementById('candidate-votes-0').innerText   = v[2];
+  document.getElementById('candidate-name-1').innerText    = hex2a(v[3]);
+  document.getElementById('candidate-address-1').innerText = v[4];
+  document.getElementById('candidate-votes-1').innerText   = v[5];
+  document.getElementById('candidate-name-2').innerText    = hex2a(v[6]);
+  document.getElementById('candidate-address-2').innerText = v[7];
+  document.getElementById('candidate-votes-2').innerText   = v[8];
+  document.getElementById('candidate-name-3').innerText    = hex2a(v[9]);
+  document.getElementById('candidate-address-3').innerText = v[10];
+  document.getElementById('candidate-votes-3').innerText   = v[11];
+  });
+});
+
+// Log contract events
+Miduso.deployed().then(function(contractInstance) {
+  var events = contractInstance.allEvents({fromBlock: 0, toBlock: 'latest'});
+  events.get((error, logs) => {
+  // we have the logs, now print them
+  logs.forEach(log => console.log(log.args));
+  });
+});
+
+
+/*********************************************************************************
+ *
+ * Page Initialization
+ *
+ *********************************************************************************/
+
+$(document).ready(function () {
+
+// Set-up web3
+
+  if (typeof web3 !== 'undefined') {
+    console.warn("Using web3 detected from external source like Metamask");
+    // Use Mist/MetaMask's provider
+    window.web3 = new _web2.default(web3.currentProvider);
+  } else {
+    console.warn("No web3 detected. Falling back to http://localhost:8545. You should remove this fallback when you deploy live, as it's inherently insecure. Consider switching to Metamask for development. More info here: http://truffleframework.com/tutorials/truffle-and-metamask");
+    // fallback - use your fallback strategy (local node / hosted node + in-dapp id mgmt / fail)
+    window.web3 = new _web2.default(new _web2.default.providers.HttpProvider("http://localhost:8545"));
+  }
+
+// Prepare contract
+
+  console.log(web3.currentProvider);
+  Miduso.setProvider(web3.currentProvider);
+  Miduso.detectNetwork();
+  console.log(Miduso);
+
+// Load system information
+
+  var coinbase = web3.eth.coinbase;
+  document.getElementById('coinbase').innerText = coinbase;
+
+  var coinbaseBalance = web3.eth.getBalance(coinbase) / _weiToEther;
+  document.getElementById('coinbaseBalance').innerText = coinbaseBalance;
+
+  var blockNumber = web3.eth.blockNumber;
+  document.getElementById('blockNumber').innerText = blockNumber;
+
+  var contractAddress = Miduso.address;
+  document.getElementById('contractAddress').innerText = contractAddress;
+
+  var contractABI = JSON.stringify(Miduso.abi);
+  document.getElementById('contractABI').innerText = contractABI;
+
+// Log contract events
+
+  Miduso.deployed().then(function(contractInstance) {
+    var events = contractInstance.allEvents({fromBlock: 0, toBlock: 'latest'});
+    events.get((error, logs) => {
+      // we have the logs, now print them
+      logs.forEach(log => console.log(log.args));
+    });
+  });
+
+});
+
+/*********************************************************************************
+ *
+ * end of source
+ *
+ ********************************************************************************/

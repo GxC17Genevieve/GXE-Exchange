@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Healthereum - Miduso Alpha release</title>
+  <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
+</head>
+
+<body class="container">
+  <br>
+  <h1>Healthereum - Miduso Alpha release</h1>
+  <br>
+
+  <h3>System Information</h3>
+  <br>
+  <h5>Coinbase address:       <strong id="coinbase">       </strong></h5>
+  <h5>Coinbase Ether balance: <strong id="coinbaseBalance"></strong></h5>
+  <h5>Current block number:   <strong id="blockNumber">    </strong></h5>
+  <h5>Contract address:       <strong id="contractAddress"></strong></h5>
+  <h5>Contract ABI:           <div    id="contractABI">    </div>   </h5>
+  <br><br>
+
+  <h3>Follow-ups</h3>
+  <br>
+  <h5>Patient ID:             <strong id="coinbase">       </strong></h5>
+
+  <br><br>
+  <span id="Appointment"></span>
+  <h2>Schedule a follow-up</h2>
+  <br>
+
+  <label for="doctor">Doctor:</label>
+  <input type="text" id="doctor_input" placeholder="e.g., Dr. Joe Medical"></input>
+  <br>
+
+  <label for="date">Date:</label>
+  <input type="text" id="date_input" placeholder="2017/12/20"></input>
+  <br>
+
+  <button id="schedule" onclick="ScheduleAppointment.run()">Schedule</button>
+  <br>
+
+  <div class="table-responsive">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Doctor</th>
+          <th>Date</th>
+          <th>Show Up</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td id="appointment-doctor-0">   </td>
+          <td id="appointment-date-0"></td>
+          <td id="appointment-showup-0">  </td>
+       </tr>
+        <tr>
+          <td id="appointment-doctor-1">   </td>
+          <td id="appointment-date-1"></td>
+          <td id="appointment-showup-1">  </td>
+        </tr>
+        <tr>
+          <td id="appointment-doctor-2">   </td>
+          <td id="appointment-date-2"></td>
+          <td id="appointment-showup-2">  </td>
+        </tr>
+        <tr>
+          <td id="appointment-doctor-3">   </td>
+          <td id="appointment-date-3"></td>
+          <td id="appointment-showup-3">  </td>
+        </tr>
+      </tbody>
+    </table>
+    <div id="msgAppointments"></div>
+  </div>
+
+</body>
+
+<script src="https://cdn.rawgit.com/ethereum/web3.js/develop/dist/web3.js"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+
+<script src="app.js"></script>
+
+</html>
